@@ -1,0 +1,36 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "1278401bdc441d5268a27c1e9be649e5"
+name = "qbreak-dev"
+handle = "qbreak-dev"
+application_url = "https://garmin-pt-joel-restrictions.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "kafka-dev.myshopify.com"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_discounts,write_products"
+
+[auth]
+redirect_urls = [
+  "https://garmin-pt-joel-restrictions.trycloudflare.com/auth/callback",
+  "https://garmin-pt-joel-restrictions.trycloudflare.com/auth/shopify/callback",
+  "https://garmin-pt-joel-restrictions.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-07"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+[pos]
+embedded = false
