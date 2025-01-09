@@ -3,7 +3,7 @@
 client_id = "1278401bdc441d5268a27c1e9be649e5"
 name = "qbreak-dev"
 handle = "qbreak-dev"
-application_url = "https://garmin-pt-joel-restrictions.trycloudflare.com"
+application_url = "https://lost-cindy-treaty-venue.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = "write_discounts,write_products"
 
 [auth]
 redirect_urls = [
-  "https://garmin-pt-joel-restrictions.trycloudflare.com/auth/callback",
-  "https://garmin-pt-joel-restrictions.trycloudflare.com/auth/shopify/callback",
-  "https://garmin-pt-joel-restrictions.trycloudflare.com/api/auth/callback"
+  "https://lost-cindy-treaty-venue.trycloudflare.com/auth/callback",
+  "https://lost-cindy-treaty-venue.trycloudflare.com/auth/shopify/callback",
+  "https://lost-cindy-treaty-venue.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
