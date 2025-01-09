@@ -24,9 +24,9 @@ import { createShopCollection, deleteShopCollection, fetchShopCollections } from
 import { authenticate } from "../shopify.server";
 
 export const loader = async ({ request }) => {
-  const { admin } = await authenticate.admin(request);
+  const { admin, session: { shop } } = await authenticate.admin(request);
   const collections = await fetchShopCollections(admin);
-  return { collections };
+  return { collections, shop };
 };
 export const action = async ({ request }) => {
   try {
@@ -70,7 +70,6 @@ export const action = async ({ request }) => {
 
 
 export default function Index() {
-  const shop = window.location.href.split('/')[4]
   const [modalData, setModalData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -79,7 +78,7 @@ export default function Index() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const shopify = useAppBridge();
-  const { collections } = useLoaderData() || {};
+  const { collections, shop } = useLoaderData() || {};
   const selectProduct = async (type) => {
     const preSelectedIds = selectedProducts?.map((id) => ({ id }))
     return await shopify.resourcePicker({
@@ -178,7 +177,7 @@ export default function Index() {
                 <Link style={{
                   textDecoration: "none",
                   color: "inherit"
-                }} target="_blank" to={`https://admin.shopify.com/store/${shopify.config.shop.replace('.myshopify.com', '')}/collections/${id.split('/').pop()}`} >Edit</Link>
+                }} target="_blank" to={`https://admin.shopify.com/store/${shop.replace('.myshopify.com', '')}/collections/${id.split('/').pop()}`} >Edit</Link>
               </Button>
               <Button
                 onClick={(e) => {
